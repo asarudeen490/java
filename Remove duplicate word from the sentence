@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) {
+        // FIX 1: Use String instead of char to hold a sentence
+        String a; 
+        
+        // FIX 2: Capitalize 'Scanner'
+        Scanner sc = new Scanner(System.in); 
+        System.out.println("Enter the string:");
+        
+        // FIX 3: Use nextLine() to capture the entire sentence
+        a = sc.nextLine(); 
+        
+        // FIX 4: Use lowercase \\s+ to split by spaces
+        String[] words = a.split("\\s+"); 
+        
+        // FIX 5: Use .length without parentheses for arrays
+        int n = words.length; 
+        
+        // FIX 6: Your nested loop logic to find and wipe out duplicates
+        for (int i = 0; i < n; i++) {
+            // Skip checking if this word was already marked as a duplicate
+            if (words[i].equals("")) {
+                continue;
+            }
+            
+            for (int j = i + 1; j < n; j++) {
+                // If a future word matches the current word, replace it with an empty string
+                if (words[i].equals(words[j])) {
+                    words[j] = ""; 
+                }
+            }
+        }
+        
+        // Print the remaining words that aren't empty
+        System.out.print("Result: ");
+        for (int i = 0; i < n; i++) {
+            if (!words[i].equals("")) {
+                System.out.print(words[i] + " ");
+            }
+        }
+        System.out.println(); // New line at the end
+        
+        sc.close();
+    }
+}
